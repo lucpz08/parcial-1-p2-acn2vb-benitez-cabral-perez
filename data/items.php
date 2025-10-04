@@ -41,14 +41,6 @@ $items = array (
     'descripcion' => 'Nueva entrega de la saga Yakuza con historia cargada de humor y drama.',
     'imagen' => 'assets/images/likeadragon.jpg',
   ),
-  5 => 
-  array (
-    'id' => 10,
-    'titulo' => 'astro bot 2',
-    'categoria' => 'Acción/Aventura',
-    'descripcion' => 'astro bot 2 test',
-    'imagen' => 'assets/images/uploads/game_68e074fd276fb6.83431321.jpg',
-  ),
 );
 
 // Lista de categorías derivadas del array

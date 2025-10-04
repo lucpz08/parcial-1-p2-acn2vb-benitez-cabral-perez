@@ -14,29 +14,29 @@ $tipoMensaje = "";
 if (isset($_GET['eliminar'])) {
     $idEliminar = intval($_GET['eliminar']);
     $juegoEliminado = null;
-    
+
     // Buscar y eliminar el juego
     foreach ($items as $key => $item) {
         if ($item['id'] == $idEliminar) {
             $juegoEliminado = $item;
-            
+
             // Eliminar imagen si no es placeholder
             if ($item['imagen'] !== 'assets/images/placeholder.jpg' && file_exists(__DIR__ . '/' . $item['imagen'])) {
                 unlink(__DIR__ . '/' . $item['imagen']);
             }
-            
+
             unset($items[$key]);
             break;
         }
     }
-    
+
     if ($juegoEliminado) {
         // Reindexar array
         $items = array_values($items);
-        
+
         // Guardar cambios
         $contenido = "<?php\n// Array asociativo con los ítems (GOTY 2025)\n\$items = " . var_export($items, true) . ";\n\n// Lista de categorías derivadas del array\n\$categorias = array_values(array_unique(array_map(function (\$i) {\n    return \$i['categoria'];\n}, \$items)));\n\n// Retornar el array para que funcione con include()\nreturn \$items;";
-        
+
         if (file_put_contents(__DIR__ . '/data/items.php', $contenido)) {
             $mensaje = "🗑️ Juego eliminado: " . $juegoEliminado['titulo'];
             $tipoMensaje = "success";
@@ -114,7 +114,8 @@ $results = filtrar_items($items, $search, $categoria);
                         <div class="cat"><?php echo e($it['categoria']); ?></div>
                         <h3 class="title"><?php echo e($it['titulo']); ?></h3>
                         <p><?php echo e($it['descripcion']); ?></p>
-                        <button class="btn-delete" onclick="confirmarEliminacion(<?php echo $it['id']; ?>, '<?php echo addslashes($it['titulo']); ?>')">
+                        <button class="btn-delete"
+                            onclick="confirmarEliminacion(<?php echo $it['id']; ?>, '<?php echo addslashes($it['titulo']); ?>')">
                             🗑️ Eliminar
                         </button>
                     </div>
@@ -143,12 +144,12 @@ $results = filtrar_items($items, $search, $categoria);
 
         function confirmarEliminacion(id, titulo) {
             modalMensaje.textContent = `¿Estás seguro de que deseas eliminar "${titulo}"?`;
-            
+
             // Construir URL manteniendo los parámetros de búsqueda
             const urlParams = new URLSearchParams(window.location.search);
             urlParams.set('eliminar', id);
             btnConfirmar.href = `index.php?${urlParams.toString()}`;
-            
+
             modal.style.display = 'flex';
         }
 
@@ -157,14 +158,14 @@ $results = filtrar_items($items, $search, $categoria);
         }
 
         // Cerrar modal al hacer clic fuera
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 cerrarModal();
             }
         }
 
         // Cerrar modal con ESC
-        document.addEventListener('keydown', function(event) {
+        document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
                 cerrarModal();
             }

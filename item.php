@@ -2,6 +2,7 @@
 require __DIR__ . '/data/items.php';
 require __DIR__ . '/inc/functions.php';
 
+//Parametros de consulta GET
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $tema = isset($_GET['tema']) && $_GET['tema'] === 'oscuro' ? 'oscuro' : 'claro';
 $item = get_item_by_id($items, $id);
@@ -33,6 +34,8 @@ foreach ($gameReviews as $review) {
         $countRating++;
     }
 }
+
+// Cálculo del promedio de valoraciones para mostrar rating del juego
 $averageRating = $countRating > 0 ? round($totalRating / $countRating, 1) : 0;
 
 $mensaje = "";

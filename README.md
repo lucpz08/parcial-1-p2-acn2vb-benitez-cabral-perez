@@ -4,7 +4,3 @@
 - Esteban Cabral  
 - Nicolás Benítez  
 - Lucas Pérez  
-
-## Nombre del Repositorio
-El repositorio fue nombrado siguiendo el formato solicitado en la consigna:  
-

@@ -81,6 +81,7 @@ $results = filtrar_items($items, $search, $categoria);
             </div>
         <?php endif; ?>
 
+        <!-- Formulario para buscar por categorias -->
         <form method="GET" class="search-form">
             <input type="text" name="q" placeholder="Buscar por nombre..." value="<?php echo e($search); ?>">
 
@@ -104,6 +105,7 @@ $results = filtrar_items($items, $search, $categoria);
         } ?>
         </p>
 
+        <!-- Modelo de tarjeta para cada juego -->
         <div class="cards">
             <?php foreach ($results as $it): ?>
                 <div class="card">

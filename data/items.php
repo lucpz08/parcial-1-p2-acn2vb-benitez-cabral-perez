@@ -41,6 +41,30 @@ $items = array (
     'descripcion' => 'Nueva entrega de la saga Yakuza con historia cargada de humor y drama.',
     'imagen' => 'assets/images/likeadragon.jpg',
   ),
+  5 => 
+  array (
+    'id' => 12,
+    'titulo' => 'Black Myth: Wukong',
+    'categoria' => 'RPG',
+    'descripcion' => 'Un RPG de acción ambientado en el mundo de la mitología china, basado en la novela clásica Viaje al Oeste. El juego te pone en la piel del "Predestinado", un monje que emprende un viaje lleno de peligros para descubrir la verdad detrás de una antigua leyenda. Se caracteriza por su sistema de combate ofensivo, la posibilidad de personalizar habilidades y hechizos, y su fidelidad visual inspirada en la novela.',
+    'imagen' => 'assets/images/uploads/game_68fc2fc5e5b812.88811489.jpg',
+  ),
+  6 => 
+  array (
+    'id' => 13,
+    'titulo' => 'Final fantasy vii Rebirth',
+    'categoria' => 'Acción/RPG',
+    'descripcion' => 'Es el segundo juego de la trilogía de remake de Final Fantasy VII, que continúa la historia de Cloud y sus compañeros tras escapar de Midgar en busca de Sefirot.',
+    'imagen' => 'assets/images/uploads/game_68fc3013026022.26682839.jpg',
+  ),
+  7 => 
+  array (
+    'id' => 14,
+    'titulo' => 'Balatro',
+    'categoria' => 'Estrategia',
+    'descripcion' => 'Es un videojuego de construcción de mazos roguelike inspirado en el póquer, donde los jugadores deben crear manos de póquer combinándolas con comodines y efectos para ganar puntuaciones.',
+    'imagen' => 'assets/images/uploads/game_68fc3051a74229.93300605.jpg',
+  ),
 );
 
 // Lista de categorías derivadas del array

@@ -157,6 +157,14 @@ if (isset($_GET['delete_review'])) {
                     </div>
                     
                     <p class="game-description"><?php echo e($item['descripcion']); ?></p>
+
+                    <!-- Cuadro del video -->
+                    <div class="video-container"> 
+                        <h2>🎬 Gameplay/Tráiler</h2>
+                        <div id="youtube-player" class="player-placeholder">
+                            Cargando video...
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -276,6 +284,50 @@ if (isset($_GET['delete_review'])) {
                 cerrarModal();
             }
         });
+
+        function loadGameplayVideo() {
+            const gameId = <?php echo $id; ?>; // Usar el ID actual del juego
+            const tema = '<?php echo $tema; ?>';
+            const playerDiv = document.getElementById('youtube-player');
+            
+            // 1. Llamada asíncrona a tu API interna
+            fetch(`api.php?action=get_gameplay&id=${gameId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Respuesta de API incorrecta');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success && data.videoId) {
+                        // 2. Si es exitoso, construir el iframe de YouTube
+                        const iframeHTML = `
+                            <iframe 
+                                width="100%" 
+                                height="400" 
+                                src="https://www.youtube.com/embed/${data.videoId}?autoplay=0&rel=0" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen 
+                                title="${data.videoTitle}"
+                            ></iframe>
+                        `;
+                        playerDiv.innerHTML = iframeHTML;
+                    } else {
+                        // 3. Mostrar mensaje de error/no encontrado
+                        playerDiv.innerHTML = `<p class="no-reviews">${data.message || 'No se pudo cargar el video.'}</p>`;
+                        playerDiv.style.textAlign = 'center';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al cargar el video:', error);
+                    playerDiv.innerHTML = `<p class="no-reviews">Error de red al intentar buscar el video.</p>`;
+                    playerDiv.style.textAlign = 'center';
+                });
+        }
+
+        // Ejecutar la función al cargar la página
+        loadGameplayVideo();
     </script>
 </body>
 
